@@ -1,5 +1,5 @@
 {
-  "name": "acm-status",
+  "name": "status-check",
   "version": "0.1.0",
   "private": true,
   "scripts": {
