@@ -1,0 +1,16 @@
+{
+  "name": "acm-status",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:uclaacm/status-check.git",
+  "author": "Matthew Nieva <matthewcn56@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "http-proxy": "^1.18.1",
+    "proxy-from-env": "^1.1.0"
+  },
+  "scripts": {
+    "start": "node app.js"
+  }
+}
