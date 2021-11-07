@@ -98,13 +98,13 @@ export const sites: CommitteeSites = {
   Impact: [
     {
       description: "Official Page of ACM's Impact Initiative",
-      url: "https://acm.cs.ucla.edu/impact",
+      url: "https://acm.cs.ucla.edu",
     },
   ],
   JEDI: [
     {
       description: "Official Page of ACM's JEDI Initiative",
-      url: "https://acm.cs.ucla.edu/jedi",
+      url: "https://acm.cs.ucla.edu",
     },
   ],
 };

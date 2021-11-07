@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-const SERVER_URL =
-  process.env.NEXT_PUBLIC_CORS_SERVER || "http://localhost:8080";
 interface LinkModuleProps {
   url: string;
   description: string;

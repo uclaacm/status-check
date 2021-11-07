@@ -4,7 +4,9 @@ import { sites } from "./siteContent";
 import LinkModule from "./components/LinkModule";
 
 function App() {
-  const committees = Object.keys(sites);
+  const committees = Object.keys(sites).map((site) => (
+    <button key={site}>{site}</button>
+  ));
   const [displayedCommittees, setDisplayedCommittees] = useState(committees);
   const siteCheck = Object.entries(sites).map((site) => {
     const [initiative, siteInfo] = site;
@@ -25,14 +27,8 @@ function App() {
   return (
     <div className="App">
       <h1>Status Check</h1>
-
       <p>Filter By: {committees}</p>
-      <div>
-        {siteCheck.filter(
-          (initiative) =>
-            displayedCommittees.indexOf(String(initiative.key)) !== -1
-        )}
-      </div>
+      <div>{siteCheck}</div>
     </div>
   );
 }
