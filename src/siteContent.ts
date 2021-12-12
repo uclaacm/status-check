@@ -1,3 +1,5 @@
+import { boolean } from "yargs";
+
 type committee =
   | "Studio"
   | "ICPC"
@@ -10,7 +12,7 @@ type committee =
   | "JEDI"
   | "Impact";
 
-enum Committees {
+export enum Committees {
   "Studio" = "Studio",
   "ICPC" = "ICPC",
   "Design" = "Design",
@@ -34,9 +36,29 @@ type CommitteeSites = {
   [committee in Committees]?: PageInfo[];
 };
 
-type CommitteeSiteHashType = {
+export type CommitteeDict = {
+  [committee in Committees]?: any;
+};
+
+// export interface CommitteeHashType {
+//   Studio?: boolean;
+//   ICPC?: boolean;
+//   Design?: boolean;
+//   Cyber?: boolean;
+//   TeachLA?: boolean;
+//   W?: boolean;
+//   AI?: boolean;
+//   Hack?: boolean;
+//   JEDI?: boolean;
+//   Impact?: boolean;
+//   Internal?: boolean;
+// }
+
+export type CommitteeHashType = {
   [committee in Committees]?: boolean;
 };
+
+export const defaultCommitteeHash: CommitteeHashType = {};
 
 export const committees = Object.keys(Committees);
 

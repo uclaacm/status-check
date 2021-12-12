@@ -1,0 +1,9 @@
+.link-card {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  background-color: azure;
+  margin: 10px;
+}

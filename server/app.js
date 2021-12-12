@@ -24,6 +24,8 @@ var cors_proxy = require("./lib/cors-anywhere");
 const proxy = cors_proxy.createServer({
   originWhitelist: originWhitelist,
   originBlacklist: originBlacklist,
+  requireHeaders: [], // Do not require any headers.
+  removeHeaders: [], // Do not remove any headers.
 });
 
 app.get("/proxy/:proxyUrl*", (req, res) => {

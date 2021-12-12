@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  font-family: "Poppins";
 }
 
 .App-logo {
@@ -11,6 +12,9 @@
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
+}
+button {
+  font-family: "Poppins";
 }
 
 .App-header {
@@ -35,4 +39,20 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.logo {
+  height: 30px;
+}
+
+.site-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.button-list {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
