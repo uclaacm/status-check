@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 import "./App.css";
-import { sites, defaultCommitteeHash, Committees } from "./siteContent";
+import {
+  sites,
+  defaultCommitteeHash,
+  CommitteeSites,
+  CommitteeHashType,
+  CommitteeDict,
+} from "./siteContent";
 import LinkModule, { committeeLogos } from "./components/LinkModule";
 import CommitteeButton from "./components/CommitteeButton";
 
@@ -14,14 +20,11 @@ function App() {
       onClick={() =>
         setDisplayedCommittees({
           ...displayedCommittees,
-          //@ts-ignore
-          [site]: !displayedCommittees[site],
+          [site]: !displayedCommittees[site as keyof CommitteeHashType],
         })
       }
-      //@ts-ignore
-      on={displayedCommittees[site]}
-      //@ts-ignore
-      imgSrc={committeeLogos[site]}
+      on={displayedCommittees[site as keyof CommitteeHashType]}
+      imgSrc={committeeLogos[site as keyof CommitteeDict]}
       site={site}
     />
   ));
@@ -29,8 +32,7 @@ function App() {
     .filter((site) => {
       const initiative = site[0];
       //only return the sites if they are currently being filtered
-      //@ts-ignore
-      return displayedCommittees[initiative];
+      return displayedCommittees[initiative as keyof CommitteeHashType];
     })
     .map((site) => {
       const [initiative, siteInfo] = site;

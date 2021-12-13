@@ -5,7 +5,7 @@ interface CommitteeButtonProps {
   key: string;
   onClick: () => void;
   imgSrc: any;
-  on: boolean;
+  on: boolean | undefined;
 }
 
 export default function CommitteeButton(props: CommitteeButtonProps) {

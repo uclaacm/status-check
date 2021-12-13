@@ -44,8 +44,10 @@ export default function LinkModule(props: LinkModuleProps) {
   }, []);
   return (
     <div className="link-card">
-      {/*@ts-ignore*/}
-      <img src={committeeLogos[props.committee]} className="logo" />
+      <img
+        src={committeeLogos[props.committee as keyof CommitteeDict]}
+        className="logo"
+      />
       <div>
         <a href={props.url} target="_blank" rel="noreferrer noopener">
           {props.url}

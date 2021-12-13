@@ -1,17 +1,3 @@
-import { boolean } from "yargs";
-
-type committee =
-  | "Studio"
-  | "ICPC"
-  | "Design"
-  | "Cyber"
-  | "TeachLA"
-  | "W"
-  | "AI"
-  | "Hack"
-  | "JEDI"
-  | "Impact";
-
 export enum Committees {
   "Studio" = "Studio",
   "ICPC" = "ICPC",
@@ -32,27 +18,13 @@ export interface PageInfo {
   statusPath?: string;
 }
 
-type CommitteeSites = {
+export type CommitteeSites = {
   [committee in Committees]?: PageInfo[];
 };
 
 export type CommitteeDict = {
   [committee in Committees]?: any;
 };
-
-// export interface CommitteeHashType {
-//   Studio?: boolean;
-//   ICPC?: boolean;
-//   Design?: boolean;
-//   Cyber?: boolean;
-//   TeachLA?: boolean;
-//   W?: boolean;
-//   AI?: boolean;
-//   Hack?: boolean;
-//   JEDI?: boolean;
-//   Impact?: boolean;
-//   Internal?: boolean;
-// }
 
 export type CommitteeHashType = {
   [committee in Committees]?: boolean;
