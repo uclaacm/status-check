@@ -20,7 +20,7 @@
     "web-vitals": "^1.0.1"
   },
   "engines": {
-    "node": ">=14.x"
+    "node": ">=14.x < 17.0"
   },
   "scripts": {
     "start-client": "react-scripts start",
