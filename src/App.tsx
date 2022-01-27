@@ -17,11 +17,13 @@ function App() {
   const committees = Object.keys(sites).map((site) => (
     <CommitteeButton
       key={site}
-      onClick={() =>
+      onClick={() =>{
+        console.log(displayedCommittees);
         setDisplayedCommittees({
           ...displayedCommittees,
           [site]: !displayedCommittees[site as keyof CommitteeHashType],
         })
+      }
       }
       on={displayedCommittees[site as keyof CommitteeHashType]}
       imgSrc={committeeLogos[site as keyof CommitteeDict]}

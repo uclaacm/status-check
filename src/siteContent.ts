@@ -30,7 +30,11 @@ export type CommitteeHashType = {
   [committee in Committees]?: boolean;
 };
 
-export const defaultCommitteeHash: CommitteeHashType = {};
+export const defaultCommitteeHash: CommitteeHashType = {
+  Internal: true,
+  TeachLA: true,
+  Hack: true
+}; // Default values
 
 export const committees = Object.keys(Committees);
 
