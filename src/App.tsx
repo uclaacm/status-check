@@ -9,7 +9,6 @@ import {
 } from "./siteContent";
 import LinkModule, { committeeLogos } from "./components/LinkModule";
 import CommitteeButton from "./components/CommitteeButton";
-import ErrorFilter from "./components/ErrorFilter";
 
 function App() {
   const [displayedCommittees, setDisplayedCommittees] =
@@ -57,7 +56,6 @@ function App() {
   return (
     <div className="App">
       <h1>Status Check</h1>
-      <ErrorFilter></ErrorFilter>
       <h2>Check The Status of ACM's Projects/Tools</h2>
       <p>
         Filter By:
