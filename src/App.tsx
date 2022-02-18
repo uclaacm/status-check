@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import "../styles/App.css";
-import { PageInfo } from "../siteContent";
-import Filter from "./Filter";
-import Results from "./Results";
+import "./styles/App.css";
+import { PageInfo } from "./siteContent";
+import Filter from "./components/Filter";
+import Results from "./components/Results";
 
 function App() {
   const [filteredSites, setFilteredSites] = useState<[string, PageInfo[]][]>([]);
