@@ -1,5 +1,4 @@
-import React from "react";
-import "./committeeButton.css";
+import "../styles/committeeButton.css";
 interface CommitteeButtonProps {
   site: string;
   key: string;
