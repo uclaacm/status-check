@@ -20,7 +20,9 @@ const ErrorFilter = () => {
 
       // append the heroku backend link to the fetch
       const getSiteStatus = async (url: string) => {
-        const siteRes = await fetch("/proxy/" + url);
+        const siteRes = await fetch(
+          "acm-status-check.herokuapp.com" + "/proxy/" + url
+        );
         return siteRes.status;
       };
 
