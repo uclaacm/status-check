@@ -2,6 +2,8 @@ const express = require("express");
 const app = express();
 var port = process.env.PORT || 3000;
 
+app.use(cors());
+
 var originBlacklist = parseEnvList(process.env.CORSANYWHERE_BLACKLIST);
 var originWhitelist = parseEnvList(process.env.CORSANYWHERE_WHITELIST);
 function parseEnvList(env) {
