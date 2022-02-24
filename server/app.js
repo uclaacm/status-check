@@ -1,9 +1,6 @@
 const express = require("express");
-const path = require("path");
 const app = express();
 var port = process.env.PORT || 3000;
-
-
 
 var originBlacklist = parseEnvList(process.env.CORSANYWHERE_BLACKLIST);
 var originWhitelist = parseEnvList(process.env.CORSANYWHERE_WHITELIST);
@@ -28,13 +25,11 @@ const proxy = cors_proxy.createServer({
   removeHeaders: [], // Do not remove any headers.
 });
 
-
 // to be called by frontend
 app.get("/proxy/:proxyUrl*", (req, res) => {
   req.url = req.url.replace("/proxy/", "/");
   proxy.emit("request", req, res);
 });
-
 
 app.get("/", (req, res) => {
   res.status(200).send("Express Server Running!");
