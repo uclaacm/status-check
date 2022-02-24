@@ -1,6 +1,21 @@
 const express = require("express");
 const path = require("path");
 const app = express();
+const { Octokit } = require("@octokit/core");
+const dotenv = require("dotenv");
+
+const {
+  paginateRest,
+  composePaginateRest,
+} = require("@octokit/plugin-paginate-rest");
+
+const MyOctokit = Octokit.plugin(paginateRest);
+
+const octokit = new MyOctokit({
+  auth: process.env.GITHUB_AUTH_TOKEN,
+});
+
+dotenv.config();
 var port = process.env.PORT || 3000;
 app.use(express.static(path.join(__dirname, "..", "build")));
 app.use(express.static("public"));
@@ -36,4 +51,27 @@ app.get("/proxy/:proxyUrl*", (req, res) => {
 //start server
 app.listen(port, () => {
   console.log("Server started on port 3000!");
+});
+
+app.get("/repos", async (_, res) => {
+  const response = await octokit.paginate("GET /orgs/uclaacm/repos", {
+    per_page: 100,
+  });
+
+  const result = new Map();
+  res.set("no-topic", []);
+
+  for (let obj of response) {
+    if (!!obj.homepage) {
+      if (obj.topics.length) {
+        for (let topic of obj.topics) {
+          if (res.has(topic)) res.set(topic, [...res.get(topic), obj.homepage]);
+          else res.set(topic, [obj.homepage]);
+        }
+      } else {
+        res.set("no-topic", [...res.get("no-topic"), obj.homepage]);
+      }
+    }
+  }
+  return res.json(Object.fromEntries(result));
 });
