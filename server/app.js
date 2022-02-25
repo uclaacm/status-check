@@ -4,16 +4,11 @@ const app = express();
 const { Octokit } = require("@octokit/core");
 const dotenv = require("dotenv");
 
-const {
-  paginateRest,
-  composePaginateRest,
-} = require("@octokit/plugin-paginate-rest");
+const { paginateRest } = require("@octokit/plugin-paginate-rest");
 
 const MyOctokit = Octokit.plugin(paginateRest);
 
-const octokit = new MyOctokit({
-  auth: process.env.GITHUB_AUTH_TOKEN,
-});
+const octokit = new MyOctokit();
 
 dotenv.config();
 var port = process.env.PORT || 3000;
@@ -28,11 +23,6 @@ function parseEnvList(env) {
   }
   return env.split(",");
 }
-
-// Set up rate-limiting to avoid abuse of the public CORS Anywhere server.
-var checkRateLimit = require("./lib/rate-limit")(
-  process.env.CORSANYWHERE_RATELIMIT
-);
 
 var cors_proxy = require("./lib/cors-anywhere");
 
@@ -59,19 +49,20 @@ app.get("/repos", async (_, res) => {
   });
 
   const result = new Map();
-  res.set("no-topic", []);
+  result.set("no-topic", []);
 
   for (let obj of response) {
-    if (!!obj.homepage) {
+    if (obj.homepage) {
       if (obj.topics.length) {
         for (let topic of obj.topics) {
-          if (res.has(topic)) res.set(topic, [...res.get(topic), obj.homepage]);
-          else res.set(topic, [obj.homepage]);
+          if (result.has(topic))
+            result.set(topic, [...result.get(topic), obj.homepage]);
+          else result.set(topic, [obj.homepage]);
         }
       } else {
-        res.set("no-topic", [...res.get("no-topic"), obj.homepage]);
+        result.set("no-topic", [...result.get("no-topic"), obj.homepage]);
       }
     }
   }
-  return res.json(Object.fromEntries(result));
+  return res.status(200).json(Object.fromEntries(result));
 });
