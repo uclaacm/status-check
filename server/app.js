@@ -3,6 +3,7 @@ const path = require("path");
 const app = express();
 const { Octokit } = require("@octokit/core");
 const dotenv = require("dotenv");
+require("dotenv").config();
 
 const {
   paginateRest,
@@ -59,17 +60,20 @@ app.get("/repos", async (_, res) => {
   });
 
   const result = new Map();
-  res.set("no-topic", []);
+  result.set("no-topic", []);
 
   for (let obj of response) {
     if (!!obj.homepage) {
       if (obj.topics.length) {
         for (let topic of obj.topics) {
-          if (res.has(topic)) res.set(topic, [...res.get(topic), obj.homepage]);
-          else res.set(topic, [obj.homepage]);
+          if (result.has(topic)) {
+            console.log(result.get(topic))
+            result.set(topic, [...result.get(topic), obj.homepage]);
+          }
+          else result.set(topic, [obj.homepage]);
         }
       } else {
-        res.set("no-topic", [...res.get("no-topic"), obj.homepage]);
+        result.set("no-topic", [...result.get("no-topic"), obj.homepage]);
       }
     }
   }
