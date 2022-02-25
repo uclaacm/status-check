@@ -3,6 +3,7 @@ const path = require("path");
 const app = express();
 const { Octokit } = require("@octokit/core");
 const dotenv = require("dotenv");
+require("dotenv").config();
 
 const { paginateRest } = require("@octokit/plugin-paginate-rest");
 
