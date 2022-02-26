@@ -1,5 +1,6 @@
 import { PageInfo } from '../siteContent';
 import LinkModule from './LinkModule'
+import "../styles/results.css"
 
 interface ResultsProps {
     sites: [string, PageInfo[]][];
@@ -17,14 +18,11 @@ export default function Results(props: ResultsProps) {
             />
         ));
         return (
-            <div key={initiative}>
-                {initiative}
-                <div>{initiativeSites}</div>
-            </div>
+                <div key={initiative}>{initiativeSites}</div>
         );
     })
     return (
-        <div>
+        <div id="results">
             {links}
         </div>
     )
