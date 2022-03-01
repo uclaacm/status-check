@@ -1,8 +1,10 @@
 .link-card {
   display: grid;
-  grid-template-columns: 5% 45% 25% 25%;
+  grid-template-columns: 5% 55% 25% 15%;
   align-items: center;
   margin: 10px;
+  border-bottom: 2px solid #AFAFAF;
+  padding-bottom: 7px;
 }
 
 .link {
@@ -11,4 +13,22 @@
 
 .linkTitle {
   font-size: 1.5rem;
+  text-decoration: none;
+}
+
+.committee {
+  font-size: 1.25rem;
+  text-align: left;
+}
+
+.success {
+  font-size: 1.25rem;
+  color: #009C22;
+  text-align: left;
+}
+
+.fail {
+  font-size: 1.25rem;
+  color: #F44646;
+  text-align: left;
 }

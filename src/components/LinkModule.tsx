@@ -44,6 +44,7 @@ export default function LinkModule(props: LinkModuleProps) {
   return (
     <div className="link-card">
       <img
+        alt="Committee Logo"
         src={committeeLogos[props.committee as keyof CommitteeDict]}
         className="logo"
       />
@@ -51,10 +52,10 @@ export default function LinkModule(props: LinkModuleProps) {
         <a href={props.url} target="_blank" rel="noreferrer noopener" className="linkTitle">
           {props.url}
         </a>
-        <div> {props.description}</div>
+        <p> {props.description}</p>
       </div>
-      <div>Committee: {props.committee}</div>
-      <div>Status: {siteStatus} </div>
+      <p className="committee">{props.committee}</p>
+      <p className={(siteStatus && siteStatus >= 200 && siteStatus < 300) ? "success" : "fail"}>{siteStatus} </p>
     </div>
   );
 }
