@@ -2,14 +2,14 @@ import { PageInfo } from "../siteContent";
 import LinkModule from "./LinkModule";
 import "../styles/results.css";
 import { useEffect, useState } from "react";
-import { textSpanIntersectsWithPosition } from "typescript";
+import { url } from "inspector";
 
 interface ResultsProps {
   sites: [string, PageInfo[]][];
 }
 
 export default function Results(props: ResultsProps) {
-  const [repos, setRepos] = useState({ topic: [] });
+  const [repos, setRepos] = useState({ subject: ["url"] });
 
   const getRepos = async () => {
     const response = await fetch("/repos");
@@ -22,27 +22,18 @@ export default function Results(props: ResultsProps) {
     getRepos();
   }, []);
 
-  console.log(repos);
-
-//   const list = Object.keys(repos).map((topic) => {
-//     const websites = repos.topic.map((link) => (
-//       <LinkModule committee={topic} url={link} key={link} description={"TBD"} />
-//     ));
-//     return <div key={topic}>{websites}</div>;
-//   });
-
-  const links = props.sites.map((site) => {
-    const [initiative, siteInfo] = site;
-    const initiativeSites = siteInfo.map((checkSite) => (
+  const list = Object.entries(repos).map((topic) => {
+    const [committee, ...urls] = topic;
+    const websites = urls[0].map((link) => (
       <LinkModule
-        committee={initiative}
-        url={checkSite.url}
-        key={checkSite.url}
-        description={checkSite.description}
+        committee={committee}
+        url={link}
+        key={link}
+        description={"TBD"}
       />
     ));
-    return <div key={initiative}>{initiativeSites}</div>;
+    return <div key={committee}>{websites}</div>;
   });
 
-  return <div id="results">{links}</div>;
+  return <div id="results">{list}</div>;
 }
