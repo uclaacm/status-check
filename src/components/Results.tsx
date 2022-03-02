@@ -5,24 +5,11 @@ import { useEffect, useState } from "react";
 import { url } from "inspector";
 
 interface ResultsProps {
-  sites: [string, PageInfo[]][];
+  repoList: [string, string[]][];
 }
 
 export default function Results(props: ResultsProps) {
-  const [repos, setRepos] = useState({ subject: ["url"] });
-
-  const getRepos = async () => {
-    const response = await fetch("/repos");
-    const data = await response.json();
-    setRepos(data);
-    return;
-  };
-
-  useEffect(() => {
-    getRepos();
-  }, []);
-
-  const list = Object.entries(repos).map((topic) => {
+  const list = props.repoList.map((topic) => {
     const [committee, ...urls] = topic;
     const websites = urls[0].map((link) => (
       <LinkModule
