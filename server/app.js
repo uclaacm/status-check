@@ -1,5 +1,4 @@
 const express = require("express");
-const path = require("path");
 const app = express();
 const { Octokit } = require("@octokit/core");
 const dotenv = require("dotenv");
@@ -13,8 +12,6 @@ const octokit = new MyOctokit();
 
 dotenv.config();
 var port = process.env.PORT || 3000;
-app.use(express.static(path.join(__dirname, "..", "build")));
-app.use(express.static("public"));
 
 var originBlacklist = parseEnvList(process.env.CORSANYWHERE_BLACKLIST);
 var originWhitelist = parseEnvList(process.env.CORSANYWHERE_WHITELIST);
@@ -34,12 +31,17 @@ const proxy = cors_proxy.createServer({
   removeHeaders: [], // Do not remove any headers.
 });
 
+// to be called by frontend
 app.get("/proxy/:proxyUrl*", (req, res) => {
   req.url = req.url.replace("/proxy/", "/");
   proxy.emit("request", req, res);
 });
 
-//start server
+app.get("/", (req, res) => {
+  res.status(200).send("Express Server Running!");
+});
+
+// start server
 app.listen(port, () => {
   console.log("Server started on port 3000!");
 });
@@ -50,7 +52,6 @@ app.get("/repos", async (_, res) => {
     response = await octokit.paginate("GET /orgs/uclaacm/repos", {
       per_page: 100,
     });
-    console.log(response);
   } catch (err) {
     return res.status(400).json({ message: err.message });
   }

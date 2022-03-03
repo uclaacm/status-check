@@ -10,8 +10,7 @@ import studioLogo from "../logos/logo-studio.svg";
 import teachlaLogo from "../logos/logo-teachla.svg";
 import wLogo from "../logos/logo-w.svg";
 import internalLogo from "../logos/logo-internal.svg";
-import "../App.css";
-import "./linkModule.css";
+import "../styles/linkModule.css";
 interface LinkModuleProps {
   url: string;
   description: string;
@@ -58,6 +57,7 @@ export default function LinkModule(props: LinkModuleProps) {
     </div>
   );
 }
+// append the heroku backend link to the fetch
 
 const getSiteStatus = async (url: string) => {
   const siteRes = await fetch("/proxy/" + url);
