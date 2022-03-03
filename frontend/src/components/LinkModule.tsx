@@ -40,11 +40,12 @@ export default function LinkModule(props: LinkModuleProps) {
       setSiteStatus(status);
     };
     checkStatus();
-  }, []);
+  }, [props.url]);
   return (
     <div className="link-card">
       <img
         src={committeeLogos[props.committee as keyof CommitteeDict]}
+        alt={`logo of ${props.committee}`}
         className="logo"
       />
       <div>
