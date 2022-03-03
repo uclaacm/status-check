@@ -50,6 +50,7 @@ app.get("/repos", async (_, res) => {
     response = await octokit.paginate("GET /orgs/uclaacm/repos", {
       per_page: 100,
     });
+    console.log(response);
   } catch (err) {
     return res.status(400).json({ message: err.message });
   }
@@ -62,11 +63,20 @@ app.get("/repos", async (_, res) => {
       if (obj.topics.length) {
         for (let topic of obj.topics) {
           if (result.has(topic))
-            result.set(topic, [...result.get(topic), obj.homepage]);
-          else result.set(topic, [obj.homepage]);
+            result.set(topic, [
+              ...result.get(topic),
+              { url: obj.homepage, description: obj.description },
+            ]);
+          else
+            result.set(topic, [
+              { url: obj.homepage, description: obj.description },
+            ]);
         }
       } else {
-        result.set("no-topic", [...result.get("no-topic"), obj.homepage]);
+        result.set("no-topic", [
+          ...result.get("no-topic"),
+          { url: obj.homepage, description: obj.description },
+        ]);
       }
     }
   }
