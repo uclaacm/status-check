@@ -1,4 +1,3 @@
-import { PageInfo } from '../siteContent';
 import LinkModule from './LinkModule'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowDown, faArrowUp } from '@fortawesome/free-solid-svg-icons';
@@ -6,7 +5,7 @@ import "../styles/results.css"
 import { useState } from 'react';
 
 interface ResultsProps {
-    sites: [string, PageInfo[]][];
+  repoList: [string, string[]][];
 }
 
 enum Sort {
@@ -19,20 +18,18 @@ export default function Results(props: ResultsProps) {
     const [currentSort, setCurrentSort] = useState(Sort.Site);
     const [sortDown, setSortDown] = useState(true);
 
-    const links = props.sites.map((site) => {
-        const [initiative, siteInfo] = site;
-        const initiativeSites = siteInfo.map((checkSite) => (
-            <LinkModule
-                committee={initiative}
-                url={checkSite.url}
-                key={checkSite.url}
-                description={checkSite.description}
-            />
+    const list = props.repoList.map((topic) => {
+        const [committee, ...urls] = topic;
+        const websites = urls[0].map((link) => (
+          <LinkModule
+            committee={committee}
+            url={link}
+            key={link}
+            description={"TBD"}
+          />
         ));
-        return (
-            <div key={initiative}>{initiativeSites}</div>
-        );
-    })
+        return <div key={committee}>{websites}</div>;
+      });
     return (
         <div id="results">
             <div id="labelsContainer">
@@ -59,7 +56,7 @@ export default function Results(props: ResultsProps) {
                     </button>
                 ))}
             </div>
-            {links}
+            {list}
         </div >
     )
 }

@@ -28,8 +28,8 @@ export const committeeLogos: CommitteeDict = {
   Studio: studioLogo,
   TeachLA: teachlaLogo,
   W: wLogo,
-
   Impact: internalLogo,
+  "no-topic": aiLogo,
 };
 
 export default function LinkModule(props: LinkModuleProps) {
@@ -49,7 +49,12 @@ export default function LinkModule(props: LinkModuleProps) {
         className="logo"
       />
       <div className="link">
-        <a href={props.url} target="_blank" rel="noreferrer noopener" className="linkTitle">
+        <a
+          href={props.url}
+          target="_blank"
+          rel="noreferrer noopener"
+          className="linkTitle"
+        >
           {props.url}
         </a>
         <p> {props.description}</p>
