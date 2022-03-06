@@ -10,6 +10,7 @@ export enum Committees {
   "JEDI" = "JEDI",
   "Impact" = "Impact",
   "Internal" = "Internal",
+  "no-topic" = "no-topic",
 }
 
 export interface PageInfo {
@@ -33,7 +34,7 @@ export type CommitteeHashType = {
 export const defaultCommitteeHash: CommitteeHashType = {
   Internal: true,
   TeachLA: true,
-  Hack: true
+  Hack: true,
 }; // Default values
 
 export const committees = Object.keys(Committees);

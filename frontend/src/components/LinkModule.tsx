@@ -28,8 +28,8 @@ export const committeeLogos: CommitteeDict = {
   Studio: studioLogo,
   TeachLA: teachlaLogo,
   W: wLogo,
-
   Impact: internalLogo,
+  "no-topic": aiLogo,
 };
 
 export default function LinkModule(props: LinkModuleProps) {
@@ -40,25 +40,29 @@ export default function LinkModule(props: LinkModuleProps) {
       setSiteStatus(status);
     };
     checkStatus();
-  }, [props.url]);
+  }, []);
   return (
     <div className="link-card">
       <img
         src={committeeLogos[props.committee as keyof CommitteeDict]}
-        alt={`logo of ${props.committee}`}
         className="logo"
       />
-      <div>
-        <a href={props.url} target="_blank" rel="noreferrer noopener">
+      <div className="link">
+        <a
+          href={props.url}
+          target="_blank"
+          rel="noreferrer noopener"
+          className="linkTitle"
+        >
           {props.url}
         </a>
         <div> {props.description}</div>
-        <div>Status: {siteStatus} </div>
       </div>
+      <div>Topic: {props.committee}</div>
+      <div>Status: {siteStatus} </div>
     </div>
   );
 }
-// append the heroku backend link to the fetch
 
 const getSiteStatus = async (url: string) => {
   const siteRes = await fetch("/proxy/" + url);

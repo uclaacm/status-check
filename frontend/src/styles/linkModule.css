@@ -1,9 +1,14 @@
 .link-card {
-  display: flex;
-  flex-direction: row;
-  align-content: center;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 5% 45% 25% 25%;
   align-items: center;
-  background-color: azure;
   margin: 10px;
+}
+
+.link {
+  text-align: left;
+}
+
+.linkTitle {
+  font-size: 1rem;
 }
