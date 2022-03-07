@@ -2,3 +2,30 @@
   width: 85%;
   margin: auto;
 }
+#labelsContainer {
+  display: grid;
+  grid-template-columns: 5% 55% 25% 15%;
+  align-items: center;
+  margin: 10px;
+  border-bottom: 2px solid #afafaf;
+  padding-bottom: 7px;
+}
+
+.label {
+  font-size: 1.25rem;
+  border: 0;
+  background-color: transparent;
+  text-align: left;
+  padding: 0;
+  color: #2c2c2c;
+}
+
+.label:hover {
+  opacity: 75%;
+  cursor: pointer;
+}
+
+.arrow {
+  margin-left: 7px;
+  color: #2c2c2c;
+}
