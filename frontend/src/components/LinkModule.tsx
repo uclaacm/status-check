@@ -56,10 +56,18 @@ export default function LinkModule(props: LinkModuleProps) {
         >
           {props.url}
         </a>
-        <div> {props.description}</div>
+        <p> {props.description}</p>
       </div>
-      <div>Topic: {props.committee}</div>
-      <div>Status: {siteStatus} </div>
+      <p className="committee">{props.committee}</p>
+      <p
+        className={
+          siteStatus && siteStatus >= 200 && siteStatus < 300
+            ? "success"
+            : "fail"
+        }
+      >
+        {siteStatus}{" "}
+      </p>
     </div>
   );
 }
