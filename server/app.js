@@ -66,20 +66,11 @@ app.get("/repos", async (_, res) => {
       if (obj.topics.length) {
         for (let topic of obj.topics) {
           if (result.has(topic))
-            result.set(topic, [
-              ...result.get(topic),
-              { url: obj.homepage, description: obj.description },
-            ]);
-          else
-            result.set(topic, [
-              { url: obj.homepage, description: obj.description },
-            ]);
+            result.set(topic, [...result.get(topic), obj.homepage]);
+          else result.set(topic, [obj.homepage]);
         }
       } else {
-        result.set("no-topic", [
-          ...result.get("no-topic"),
-          { url: obj.homepage, description: obj.description },
-        ]);
+        result.set("no-topic", [...result.get("no-topic"), obj.homepage]);
       }
     }
   }
