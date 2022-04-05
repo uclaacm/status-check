@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "./styles/App.css";
-import { PageInfo } from "./siteContent";
-import Filter from "./components/Filter";
-import Results from "./components/Results";
+import LinkModule from "./components/LinkModule";
+import Results, { LinkObject } from "./components/Results";
 
 function App() {
-  const [filteredSites, setFilteredSites] = useState<[string, string[]][]>([
-    ["topic", ["url1", "url2"]],
-  ]);
+  const [filteredSites, setFilteredSites] = useState<LinkObject[]>([]);
   const [repos, setRepos] = useState({ subject: ["url"] });
 
   const getRepos = async () => {
@@ -24,8 +21,26 @@ function App() {
   }, []);
 
   useEffect(() => {
-    const list = Object.entries(repos);
-    setFilteredSites(list);
+    const dataList = Object.entries(repos); // [committee,urls[]][]
+    let objectList:LinkObject[] = [];
+    dataList.forEach((topic) => {
+      const [committee, ...urls] = topic;
+      urls[0].forEach((link,index) => {
+        const currentObject:LinkObject = {
+          url:link,
+          component: <LinkModule
+            committee={committee}
+            url={link}
+            key={committee+index}
+            description={"TBD"}
+          />,
+          committee:committee
+        };
+        objectList.push(currentObject)
+
+      });
+    });
+    setFilteredSites(objectList);
   }, [repos]);
 
   //sort your state data here

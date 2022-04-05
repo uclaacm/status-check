@@ -1,12 +1,16 @@
-import { PageInfo } from "../siteContent";
-import LinkModule from "./LinkModule";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowDown, faArrowUp } from "@fortawesome/free-solid-svg-icons";
 import "../styles/results.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface ResultsProps {
-  repoList: [string, string[]][];
+  repoList: LinkObject[];
+}
+
+export interface LinkObject {
+  component: JSX.Element,
+  url: String,
+  committee: String
 }
 
 enum Sort {
@@ -18,26 +22,36 @@ enum Sort {
 export default function Results(props: ResultsProps) {
   const [currentSort, setCurrentSort] = useState(Sort.Site);
   const [sortDown, setSortDown] = useState(true);
-
-  const list = props.repoList.map((topic) => {
-    const [committee, ...urls] = topic;
-    const websites = urls[0].map((link) => (
-      <LinkModule
-        committee={committee}
-        url={link}
-        key={link}
-        description={"TBD"}
-      />
-    ));
-    return <div key={committee}>{websites}</div>;
-  });
-
+  const [currentLinks,setCurrentLinks] = useState<JSX.Element[]>([]);
+  useEffect(() => {
+    switch (currentSort) {
+      case Sort.Committee:
+        props.repoList.sort((a,b) => {
+          if (a.committee < b.committee) return -1;
+          if (a.committee > b.committee) return 1;
+          return 0;
+        });
+        break;
+      case Sort.Site:
+        props.repoList.sort((a,b) => {
+          if (a.url < b.url) return -1;
+          if (a.url > b.url) return 1;
+          return 0;
+        });
+        break;
+      case Sort.Status:
+        
+    }
+    if (!sortDown) props.repoList.reverse();
+    setCurrentLinks(props.repoList.map(current => current.component))
+  },[currentSort,sortDown,props.repoList])
   return (
     <div id="results">
       <div id="labelsContainer">
         <div></div>
         {[Sort.Site, Sort.Committee, Sort.Status].map((sort) => (
           <button
+            key={sort}
             className="label"
             onClick={() => {
               if (currentSort === sort) setSortDown((sortDown) => !sortDown);
@@ -57,8 +71,7 @@ export default function Results(props: ResultsProps) {
           </button>
         ))}
       </div>
-
-      {list}
+      {currentLinks}
     </div>
   );
 }
