@@ -15,9 +15,10 @@ interface LinkModuleProps {
   url: string;
   description: string;
   committee: string;
+  onStatusChange: (status:number) => void
 }
 
-export const committeeLogos: CommitteeDict = {
+export const committeeLogos = {
   AI: aiLogo,
   Cyber: cyberLogo,
   Design: designLogo,
@@ -38,6 +39,7 @@ export default function LinkModule(props: LinkModuleProps) {
     const checkStatus = async () => {
       const status = await getSiteStatus(props.url);
       setSiteStatus(status);
+      props.onStatusChange(status);
     };
     checkStatus();
   }, []);

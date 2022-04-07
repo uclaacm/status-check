@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "./styles/App.css";
-import LinkModule from "./components/LinkModule";
 import Results, { LinkObject } from "./components/Results";
 
 function App() {
   const [filteredSites, setFilteredSites] = useState<LinkObject[]>([]);
-  const [repos, setRepos] = useState({ subject: ["url"] });
+  const [repos, setRepos] = useState({ subject: [] });
 
   const getRepos = async () => {
     const response = await fetch(
@@ -28,12 +27,6 @@ function App() {
       urls[0].forEach((link,index) => {
         const currentObject:LinkObject = {
           url:link,
-          component: <LinkModule
-            committee={committee}
-            url={link}
-            key={committee+index}
-            description={"TBD"}
-          />,
           committee:committee
         };
         objectList.push(currentObject)
