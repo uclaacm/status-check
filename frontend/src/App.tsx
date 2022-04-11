@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import "./styles/App.css";
-import { PageInfo } from "./siteContent";
-import Filter from "./components/Filter";
 import Results from "./components/Results";
 
 function App() {

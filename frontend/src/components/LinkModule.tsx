@@ -34,18 +34,20 @@ export const committeeLogos: CommitteeDict = {
 
 export default function LinkModule(props: LinkModuleProps) {
   const [siteStatus, setSiteStatus] = useState<number | null>(null);
+  
   useEffect(() => {
     const checkStatus = async () => {
       const status = await getSiteStatus(props.url);
       setSiteStatus(status);
     };
     checkStatus();
-  }, []);
+  }, [props.url]);
   return (
     <div className="link-card">
       <img
         src={committeeLogos[props.committee as keyof CommitteeDict]}
         className="logo"
+        alt = "logo"
       />
       <div className="link">
         <a

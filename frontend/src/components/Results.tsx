@@ -1,4 +1,3 @@
-import { PageInfo } from "../siteContent";
 import LinkModule from "./LinkModule";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowDown, faArrowUp } from "@fortawesome/free-solid-svg-icons";
