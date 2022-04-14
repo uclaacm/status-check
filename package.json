@@ -1043,7 +1043,7 @@
     "yargs": "^15.4.1"
   },
   "devDependencies": {
-    "husky": "^7.0.0"
+    "husky": "^7.0.4"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
