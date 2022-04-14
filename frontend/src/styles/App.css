@@ -1,10 +1,12 @@
+/* stylelint-disable */
 .App {
+  font-family: 'Poppins';
   text-align: center;
-  font-family: "Poppins";
 }
+/* stylelint-enable */
 
 button {
-  font-family: "Poppins";
+  font-family: 'Poppins', sans-serif;
 }
 
 .logo {
