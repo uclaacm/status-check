@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 import "./styles/App.css";
 import Results from "./components/Results";
 
+type repoListStructure = [string, string[]][];
+
 function App() {
-  const [filteredSites, setFilteredSites] = useState<[string, string[]][]>([
+  const [filteredSites, setFilteredSites] = useState<repoListStructure>([
     ["topic", ["url1", "url2"]],
   ]);
   const [repos, setRepos] = useState({ subject: ["url"] });
@@ -14,7 +16,9 @@ function App() {
     );
     const data = await response.json();
     setRepos(data);
-    return;
+    if (data === null || data === {}) {
+      return;
+    }
   };
 
   useEffect(() => {

@@ -54,7 +54,7 @@ export default function LinkModule(props: LinkModuleProps) {
           href={props.url}
           target="_blank"
           rel="noreferrer noopener"
-          className="linkTitle"
+          className="link-title"
         >
           {props.url}
         </a>

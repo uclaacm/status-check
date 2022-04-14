@@ -4,8 +4,10 @@ import { faArrowDown, faArrowUp } from "@fortawesome/free-solid-svg-icons";
 import "../styles/results.css";
 import { useState } from "react";
 
+type repoListStructure = [string, string[]][];
+
 interface ResultsProps {
-  repoList: [string, string[]][];
+  repoList: repoListStructure;
 }
 
 enum Sort {
