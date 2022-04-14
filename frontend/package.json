@@ -26,7 +26,10 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint-fix": "eslint --fix \"**/*.tsx\" \"**/*.ts\" && npx stylelint --fix \"**/*.css\" \"**/*.scss\" && prettier --write .",
+    "prepare": "husky install",
+    "pre-commit": "yarn lint-fix || true"
   },
   "eslintConfig": {
     "extends": [
@@ -45,5 +48,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "husky": "^7.0.0",
+    "prettier": "^2.6.2",
+    "pretty-quick": "^3.1.3"
   }
 }
