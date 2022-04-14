@@ -1,0 +1,7 @@
+[ -n "$CI" ] && exit 0
+
+. "$(dirname "$0")/_/husky.sh"
+. "$(dirname "$0")/common.sh"
+
+echo "Fixing any lint errors before commit!"
+cd frontend && yarn pre-commit

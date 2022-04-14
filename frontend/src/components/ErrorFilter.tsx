@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { sites } from "../siteContent";
+import React, { useEffect, useState } from 'react';
+import { sites } from '../siteContent';
 
 interface Status {
   status: string;
@@ -8,7 +8,6 @@ interface Status {
 
 const ErrorFilter = () => {
   const [allStatus, setAllStatus] = useState();
-
   useEffect(() => {
     const getAllSitesStatus = async () => {
       const urlList = Object.entries(sites).map(([, pageInfo]) =>
@@ -17,10 +16,9 @@ const ErrorFilter = () => {
       // Collect urls into one Array
       const urls = ([] as any).concat.apply([], urlList);
 
-
       // append the heroku backend link to the fetch
       const getSiteStatus = async (url: string) => {
-        const siteRes = await fetch("/proxy/" + url);
+        const siteRes = await fetch('/proxy/' + url);
         return siteRes.status;
       };
 
