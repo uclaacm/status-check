@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./styles/App.css";
 import Results from "./components/Results";
+// import { convertCompilerOptionsFromJson } from "typescript";
 
 type repoListStructure = [string, string[]][];
 
@@ -11,14 +12,9 @@ function App() {
   const [repos, setRepos] = useState({ subject: ["url"] });
 
   const getRepos = async () => {
-    const response = await fetch(
-      "https://acm-status-check.herokuapp.com/repos"
-    );
+    const response = await fetch(process.env.REACT_APP_BACKEND_URL + "/repos");
     const data = await response.json();
     setRepos(data);
-    if (data === null || data === {}) {
-      return;
-    }
   };
 
   useEffect(() => {

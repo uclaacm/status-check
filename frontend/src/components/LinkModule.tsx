@@ -76,7 +76,7 @@ export default function LinkModule(props: LinkModuleProps) {
 
 const getSiteStatus = async (url: string) => {
   const siteRes = await fetch(
-    "https://acm-status-check.herokuapp.com/proxy/" + url
+    process.env.REACT_APP_BACKEND_URL + "/proxy/" + url
   );
   return siteRes.status;
 };
