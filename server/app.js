@@ -1,5 +1,5 @@
 const express = require("express");
-var cors = require('cors');
+var cors = require("cors");
 const app = express();
 app.use(cors());
 const { Octokit } = require("@octokit/core");

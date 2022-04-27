@@ -28,12 +28,13 @@ export const committeeLogos: CommitteeDict = {
   Studio: studioLogo,
   TeachLA: teachlaLogo,
   W: wLogo,
-
   Impact: internalLogo,
+  "no-topic": aiLogo,
 };
 
 export default function LinkModule(props: LinkModuleProps) {
   const [siteStatus, setSiteStatus] = useState<number | null>(null);
+  
   useEffect(() => {
     const checkStatus = async () => {
       const status = await getSiteStatus(props.url);
@@ -45,22 +46,37 @@ export default function LinkModule(props: LinkModuleProps) {
     <div className="link-card">
       <img
         src={committeeLogos[props.committee as keyof CommitteeDict]}
-        alt={`logo of ${props.committee}`}
         className="logo"
+        alt = "logo"
       />
-      <div>
-        <a href={props.url} target="_blank" rel="noreferrer noopener">
+      <div className="link">
+        <a
+          href={props.url}
+          target="_blank"
+          rel="noreferrer noopener"
+          className="link-title"
+        >
           {props.url}
         </a>
-        <div> {props.description}</div>
-        <div>Status: {siteStatus} </div>
+        <p> {props.description}</p>
       </div>
+      <p className="committee">{props.committee}</p>
+      <p
+        className={
+          siteStatus && siteStatus >= 200 && siteStatus < 300
+            ? "success"
+            : "fail"
+        }
+      >
+        {siteStatus}{" "}
+      </p>
     </div>
   );
 }
-// append the heroku backend link to the fetch
 
 const getSiteStatus = async (url: string) => {
-  const siteRes = await fetch("/proxy/" + url);
+  const siteRes = await fetch(
+    process.env.REACT_APP_BACKEND_URL + "/proxy/" + url
+  );
   return siteRes.status;
 };

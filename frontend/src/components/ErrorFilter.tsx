@@ -17,10 +17,11 @@ const ErrorFilter = () => {
       // Collect urls into one Array
       const urls = ([] as any).concat.apply([], urlList);
 
-
       // append the heroku backend link to the fetch
       const getSiteStatus = async (url: string) => {
-        const siteRes = await fetch("/proxy/" + url);
+        const siteRes = await fetch(
+          process.env.REACT_APP_BACKEND_URL + "/proxy/" + url
+        );
         return siteRes.status;
       };
 

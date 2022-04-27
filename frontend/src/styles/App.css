@@ -10,3 +10,8 @@ button {
 .logo {
   height: 30px;
 }
+
+p {
+  margin: 0;
+  color: #2c2c2c;
+}
