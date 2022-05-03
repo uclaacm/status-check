@@ -4,7 +4,6 @@ import LinkModule from "./LinkModule";
 import "../styles/results.css";
 import { useEffect, useState } from "react";
 
-type repoListStructure = [string, string[]][];
 
 interface ResultsProps {
   repoList: LinkObject[];

@@ -35,34 +35,36 @@ export const committeeLogos = {
 
 export default function LinkModule(props: LinkModuleProps) {
   const [siteStatus, setSiteStatus] = useState<number | null>(null);
-  
+  const {url, description, committee, onStatusChange} = props;
+ 
   useEffect(() => {
     const checkStatus = async () => {
-      const status = await getSiteStatus(props.url);
+      const status = await getSiteStatus(url);
       setSiteStatus(status);
-      props.onStatusChange(status);
+      onStatusChange(status);
     };
     checkStatus();
-  }, [props.url]);
+  // eslint-disable-next-line
+  }, [url]); //warns that onStatusChange is a dependency
   return (
     <div className="link-card">
       <img
-        src={committeeLogos[props.committee as keyof CommitteeDict]}
+        src={committeeLogos[committee as keyof CommitteeDict]}
         className="logo"
         alt = "logo"
       />
       <div className="link">
         <a
-          href={props.url}
+          href={url}
           target="_blank"
           rel="noreferrer noopener"
           className="link-title"
         >
-          {props.url}
+          {url}
         </a>
-        <p> {props.description}</p>
+        <p> {description}</p>
       </div>
-      <p className="committee">{props.committee}</p>
+      <p className="committee">{committee}</p>
       <p
         className={
           siteStatus && siteStatus >= 200 && siteStatus < 300
