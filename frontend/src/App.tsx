@@ -7,12 +7,9 @@ function App() {
   const [repos, setRepos] = useState({ subject: [] });
 
   const getRepos = async () => {
-    const response = await fetch(
-      "https://acm-status-check.herokuapp.com/repos"
-    );
+    const response = await fetch(process.env.REACT_APP_BACKEND_URL + "/repos");
     const data = await response.json();
     setRepos(data);
-    return;
   };
 
   useEffect(() => {
@@ -21,6 +18,7 @@ function App() {
 
   useEffect(() => {
     const dataList = Object.entries(repos); // [committee,urls[]][]
+    console.log(dataList)
     let objectList:LinkObject[] = [];
     dataList.forEach((topic) => {
       const [committee, ...urls] = topic;

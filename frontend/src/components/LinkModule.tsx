@@ -35,6 +35,7 @@ export const committeeLogos = {
 
 export default function LinkModule(props: LinkModuleProps) {
   const [siteStatus, setSiteStatus] = useState<number | null>(null);
+  
   useEffect(() => {
     const checkStatus = async () => {
       const status = await getSiteStatus(props.url);
@@ -42,19 +43,20 @@ export default function LinkModule(props: LinkModuleProps) {
       props.onStatusChange(status);
     };
     checkStatus();
-  }, []);
+  }, [props.url]);
   return (
     <div className="link-card">
       <img
         src={committeeLogos[props.committee as keyof CommitteeDict]}
         className="logo"
+        alt = "logo"
       />
       <div className="link">
         <a
           href={props.url}
           target="_blank"
           rel="noreferrer noopener"
-          className="linkTitle"
+          className="link-title"
         >
           {props.url}
         </a>
@@ -76,7 +78,7 @@ export default function LinkModule(props: LinkModuleProps) {
 
 const getSiteStatus = async (url: string) => {
   const siteRes = await fetch(
-    "https://acm-status-check.herokuapp.com/proxy/" + url
+    process.env.REACT_APP_BACKEND_URL + "/proxy/" + url
   );
   return siteRes.status;
 };
