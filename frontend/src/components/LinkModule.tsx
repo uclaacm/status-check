@@ -18,17 +18,17 @@ interface LinkModuleProps {
 }
 
 export const committeeLogos: CommitteeDict = {
-  ai: aiLogo,
-  cyber: cyberLogo,
-  Design: designLogo,
+  "ai": aiLogo,
+  "cyber": cyberLogo,
+  "design": designLogo,
   "acm-hack": hackLogo,
   "acm-icpc": icpcLogo,
-  Internal: internalLogo,
-  JEDI: jediLogo,
-  Studio: studioLogo,
+  "internal": internalLogo,
+  "jedi": jediLogo,
+  "studio": studioLogo,
   "teach-la": teachlaLogo,
-  W: wLogo,
-  Impact: internalLogo,
+  "w": wLogo,
+  "impact": internalLogo,
 };
 
 export default function LinkModule(props: LinkModuleProps) {

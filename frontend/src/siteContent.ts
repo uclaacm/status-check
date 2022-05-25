@@ -1,16 +1,15 @@
 export enum Committees {
-  "Studio" = "Studio",
+  "studio" = "studio",
   "acm-icpc" = "acm-icpc",
-  "Design" = "Design",
+  "design" = "design",
   "cyber" = "cyber",
   "teach-la" = "teach-la",
-  "W" = "W",
+  "w" = "w",
   "ai" = "ai",
   "acm-hack" = "acm-hack",
-  "JEDI" = "JEDI",
-  "Impact" = "Impact",
-  "Internal" = "Internal",
-  "no-topic" = "no-topic",
+  "jedi" = "jedi",
+  "impact" = "impact",
+  "internal" = "internal",
 }
 
 export interface PageInfo {
@@ -32,7 +31,7 @@ export type CommitteeHashType = {
 };
 
 export const defaultCommitteeHash: CommitteeHashType = {
-  Internal: true,
+  internal: true,
   "teach-la": true,
   "acm-hack": true,
 }; // Default values
@@ -40,7 +39,7 @@ export const defaultCommitteeHash: CommitteeHashType = {
 export const committees = Object.keys(Committees);
 
 export const sites: CommitteeSites = {
-  Internal: [
+  internal: [
     {
       description:
         "The official website for ACM at UCLA, the largest tech community on campus!",
@@ -69,7 +68,7 @@ export const sites: CommitteeSites = {
       url: "https://icpc.uclaacm.com/",
     },
   ],
-  W: [
+  w: [
     {
       description: "Official Website of ACM-W at UCLA",
       url: "https://w.uclaacm.com",
@@ -87,20 +86,20 @@ export const sites: CommitteeSites = {
       url: "https://acmcyber.com",
     },
   ],
-  Design: [
+  design: [
     {
       description:
         "Foundational guidelines for developers and designers on how to represent ACM's identity, created by the ACM Design Team",
       url: "https://design.uclaacm.com",
     },
   ],
-  Impact: [
+  impact: [
     {
       description: "Official Page of ACM's Impact Initiative",
       url: "https://acm.cs.ucla.edu",
     },
   ],
-  JEDI: [
+  jedi: [
     {
       description: "Official Page of ACM's JEDI Initiative",
       url: "https://acm.cs.ucla.edu",
