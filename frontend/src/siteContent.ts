@@ -1,12 +1,12 @@
 export enum Committees {
   "Studio" = "Studio",
-  "ICPC" = "ICPC",
+  "acm-icpc" = "acm-icpc",
   "Design" = "Design",
-  "Cyber" = "Cyber",
-  "TeachLA" = "TeachLA",
+  "cyber" = "cyber",
+  "teach-la" = "teach-la",
   "W" = "W",
-  "AI" = "AI",
-  "Hack" = "Hack",
+  "ai" = "ai",
+  "acm-hack" = "acm-hack",
   "JEDI" = "JEDI",
   "Impact" = "Impact",
   "Internal" = "Internal",
@@ -33,8 +33,8 @@ export type CommitteeHashType = {
 
 export const defaultCommitteeHash: CommitteeHashType = {
   Internal: true,
-  TeachLA: true,
-  Hack: true,
+  "teach-la": true,
+  "acm-hack": true,
 }; // Default values
 
 export const committees = Object.keys(Committees);
@@ -51,19 +51,19 @@ export const sites: CommitteeSites = {
       url: "http://links.uclaacm.com",
     },
   ],
-  TeachLA: [
+  "teach-la": [
     {
       description: "🌱a website showcasing how awesome Teach LA is!",
       url: "https://teachla.uclaacm.com",
     },
   ],
-  Hack: [
+  "acm-hack": [
     {
       description: "Official website of ACM Hack",
       url: "https://hack.uclaacm.com",
     },
   ],
-  ICPC: [
+  "acm-icpc": [
     {
       description: "Official Website for ACM ICPC at UCLA",
       url: "https://icpc.uclaacm.com/",
@@ -75,13 +75,13 @@ export const sites: CommitteeSites = {
       url: "https://w.uclaacm.com",
     },
   ],
-  AI: [
+  ai: [
     {
       description: "ACM AI's tech blog",
       url: "https://uclaacmai.github.io",
     },
   ],
-  Cyber: [
+  cyber: [
     {
       description: "CTF Platform!",
       url: "https://acmcyber.com",

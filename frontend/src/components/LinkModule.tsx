@@ -18,23 +18,22 @@ interface LinkModuleProps {
 }
 
 export const committeeLogos: CommitteeDict = {
-  AI: aiLogo,
-  Cyber: cyberLogo,
+  ai: aiLogo,
+  cyber: cyberLogo,
   Design: designLogo,
-  Hack: hackLogo,
-  ICPC: icpcLogo,
+  "acm-hack": hackLogo,
+  "acm-icpc": icpcLogo,
   Internal: internalLogo,
   JEDI: jediLogo,
   Studio: studioLogo,
-  TeachLA: teachlaLogo,
+  "teach-la": teachlaLogo,
   W: wLogo,
   Impact: internalLogo,
-  "no-topic": aiLogo,
 };
 
 export default function LinkModule(props: LinkModuleProps) {
   const [siteStatus, setSiteStatus] = useState<number | null>(null);
-  
+
   useEffect(() => {
     const checkStatus = async () => {
       const status = await getSiteStatus(props.url);
@@ -45,9 +44,11 @@ export default function LinkModule(props: LinkModuleProps) {
   return (
     <div className="link-card">
       <img
-        src={committeeLogos[props.committee as keyof CommitteeDict]}
+        src={
+          committeeLogos[props.committee as keyof CommitteeDict] || internalLogo
+        }
         className="logo"
-        alt = "logo"
+        alt={"logo"}
       />
       <div className="link">
         <a
