@@ -37,8 +37,7 @@ function App() {
   //sort your state data here
   return (
     <div className="App">
-      <h1>Status Check</h1>
-      <h2>Check The Status of ACM's Projects/Tools</h2>
+      <h1 id="title">ACM Status Checker</h1>
       {/* <Filter onChange={(e) => setFilteredSites(e)} /> */}
       <Results repoList={filteredSites} />
     </div>

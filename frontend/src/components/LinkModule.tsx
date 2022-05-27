@@ -62,7 +62,7 @@ export default function LinkModule(props: LinkModuleProps) {
         >
           {url}
         </a>
-        <p> {description}</p>
+        {false ? <p> {description}</p> : null /* def not good coding practice sry :|*/} 
       </div>
       <p className="committee">{committee}</p>
       <p
