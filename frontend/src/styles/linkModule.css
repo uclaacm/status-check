@@ -12,8 +12,9 @@
 }
 
 .link-title {
-  font-size: 1rem;
+  font-size: 1.25rem;
   text-decoration: none;
+  word-break: break-all;
 }
 
 .committee {
