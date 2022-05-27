@@ -1,15 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "./styles/App.css";
-import Results from "./components/Results";
-// import { convertCompilerOptionsFromJson } from "typescript";
-
-type repoListStructure = [string, string[]][];
+import Results, { LinkObject } from "./components/Results";
 
 function App() {
-  const [filteredSites, setFilteredSites] = useState<repoListStructure>([
-    ["topic", ["url1", "url2"]],
-  ]);
-  const [repos, setRepos] = useState({ subject: ["url"] });
+  const [filteredSites, setFilteredSites] = useState<LinkObject[]>([]);
+  const [repos, setRepos] = useState({ subject: [] });
 
   const getRepos = async () => {
     const response = await fetch(process.env.REACT_APP_BACKEND_URL + "/repos");
@@ -22,8 +17,21 @@ function App() {
   }, []);
 
   useEffect(() => {
-    const list = Object.entries(repos);
-    setFilteredSites(list);
+    const dataList = Object.entries(repos); // [committee,urls[]][]
+    console.log(dataList)
+    let objectList:LinkObject[] = [];
+    dataList.forEach((topic) => {
+      const [committee, ...urls] = topic;
+      urls[0].forEach((link,index) => {
+        const currentObject:LinkObject = {
+          url:link,
+          committee:committee
+        };
+        objectList.push(currentObject)
+
+      });
+    });
+    setFilteredSites(objectList);
   }, [repos]);
 
   //sort your state data here
