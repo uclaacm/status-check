@@ -58,7 +58,7 @@ export default function LinkModule(props: LinkModuleProps) {
         >
           {props.url}
         </a>
-        <p> {props.description}</p>
+        {/* <p> {props.description}</p> */}
       </div>
       <p className="committee">{props.committee}</p>
       <p
